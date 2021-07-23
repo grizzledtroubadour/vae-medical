@@ -1,0 +1,10 @@
+{
+  "BRAINWEBDIR": "dataset/BrainWeb",
+  "MSKRIDIR": "path/to/MSKRI",
+  "MSSEG2008DIR": "path/to/MSSEG2008",
+  "MSLUBDIR": "path/to/MSlub",
+  "CHIP34140702DIR": "dataset/34140702",
+  "MSISBI2015DIR": "dataset/MS_ISBI_2015/training_final_v4/training",
+  "CHECKPOINTDIR": "saved/checkpoints",
+  "SAMPLEDIR": "saved/sample_MS_ISBI_2015"
+}
