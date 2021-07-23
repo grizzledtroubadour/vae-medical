@@ -1,0 +1,41 @@
+model:
+  base_learning_rate: 4.5e-6
+  target: model.VQGAN.VQModel
+  params:
+    embed_dim: 2
+    n_embed: 1024
+    ddconfig:
+      double_z: False
+      z_channels: 2
+      resolution: 32
+      in_channels: 3
+      out_channels: 3
+      C1_channels: 32 # need >= 32
+      ch_mult: [ 1,2,4]  # num_down = len(ch_mult)-1
+      layer_res_blocks_num: 2
+      attn_resolutions: [16]
+      dropout: 0.0
+    lossconfig:
+      target: model.losses.vqperceptual.VQLPIPSWithDiscriminator
+      params:
+        disc_conditional: False
+        disc_in_channels: 3
+        disc_start: 250001
+        disc_weight: 0.8
+        codebook_weight: 1.0
+
+data:
+  target: data.data_module.DataModuleFromConfig
+  params:
+    batch_size: 12
+    num_workers: 24
+    train:
+      target: data.cifar10.CIFAR10Train
+      params:
+        config:
+          size: 32
+    validation:
+      target: data.cifar10.CIFAR10Validation
+      params:
+        config:
+          size: 32
